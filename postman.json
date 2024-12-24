@@ -67,7 +67,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Doe\",\n  \"middleName\": \"A\",\n  \"email\": \"jane.doe@example.com\",\n  \"telegram\": \"@janedoe\",\n  \"phone\": \"+1234567891\",\n  \"git\": \"https://github.com/janedoe\"\n}"
+          "raw": "{\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Doe\",\n  \"middleName\": \"A\"}"
         },
         "url": {
           "raw": "{{baseUrl}}/api/students/:id",

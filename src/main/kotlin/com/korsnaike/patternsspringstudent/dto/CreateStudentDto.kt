@@ -7,18 +7,18 @@ import jakarta.validation.constraints.*
 
 data class CreateStudentDto(
     @field:NotBlank(message = "First name must not be blank")
-    val firstName: String,
+    val firstName: String? = null,
 
-    @NotBlank(message = "Last name must not be blank")
-    val lastName: String,
+    @field:NotBlank(message = "Last name must not be blank")
+    val lastName: String? = null,
 
     @field:NotBlank(message = "Middle name must not be blank")
-    val middleName: String,
+    val middleName: String? = null,
 
-    @field:Email(message = "{validation.field.email.invalid-format}")
+    @field:Email(message = "Not correct format")
     @field:Pattern(
         regexp = VALID_EMAIL_ADDRESS_REGEX_WITH_EMPTY_SPACES_ACCEPTANCE,
-        message = "{validation.field.email.invalid-format.cyrillic.not.allowed}"
+        message = "Not correct format"
     )
     @UniqueValue(fieldName = "email", entityClass = Student::class, message = "Email must be unique")
     val email: String? = null,
@@ -42,9 +42,9 @@ data class CreateStudentDto(
 ) {
 
     fun toEntity(): Student = Student(
-        firstName = this.firstName,
-        lastName = this.lastName,
-        middleName = this.middleName,
+        firstName = this.firstName ?: "",
+        lastName = this.lastName?: "",
+        middleName = this.middleName?: "",
         email = this.email,
         telegram = this.telegram,
         phone = this.phone,

@@ -21,6 +21,7 @@ import org.springframework.web.server.ResponseStatusException
 @RestController
 @RequestMapping("/api/students")
 @Validated
+@CrossOrigin(origins = ["http://localhost:3000"])
 class StudentController(@Autowired private val studentService: StudentService) {
 
     @GetMapping("/{id}")
@@ -31,7 +32,7 @@ class StudentController(@Autowired private val studentService: StudentService) {
     @ResponseStatus(HttpStatus.CREATED)
     fun createStudent(@RequestBody @Valid dto: CreateStudentDto): Student = studentService.save(dto)
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     fun updateStudent(@PathVariable id: Long, @RequestBody @Valid dto: UpdateStudentDto): Student =
         studentService.update(id, dto)
 
