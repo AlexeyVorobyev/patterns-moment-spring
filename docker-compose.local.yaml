@@ -1,0 +1,16 @@
+
+services:
+  postgres-student-database:
+    container_name: postgres-student-database
+    command: -c 'max_connections=2000'
+    image: postgres:latest
+    restart: unless-stopped
+    hostname: postgres-student-database
+    environment:
+      POSTGRES_DB: student-database
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    ports:
+      - ${DB_PORT}:5432
+    volumes:
+      - ./data/pg:/var/lib/postgresql/data:cached
