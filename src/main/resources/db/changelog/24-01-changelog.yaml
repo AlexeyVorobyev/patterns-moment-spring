@@ -1,0 +1,84 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1735003278725-1
+      author: korsnaike
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_student
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: first_name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: last_name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: middle_name
+                  type: VARCHAR(255)
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: telegram
+                  type: VARCHAR(255)
+              - column:
+                  name: phone
+                  type: VARCHAR(255)
+              - column:
+                  name: git
+                  type: VARCHAR(255)
+              - column:
+                  name: created_at
+                  type: DATETIME
+            tableName: student
+  - changeSet:
+      id: 1735003278725-2
+      author: korsnaike
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: email
+            constraintName: uc_student_email
+            tableName: student
+  - changeSet:
+      id: 1735003278725-3
+      author: korsnaike
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: git
+            constraintName: uc_student_git
+            tableName: student
+  - changeSet:
+      id: 1735003278725-4
+      author: korsnaike
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: phone
+            constraintName: uc_student_phone
+            tableName: student
+  - changeSet:
+      id: 1735003278725-5
+      author: korsnaike
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: telegram
+            constraintName: uc_student_telegram
+            tableName: student
+

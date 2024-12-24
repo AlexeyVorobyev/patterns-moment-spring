@@ -1,0 +1,104 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-test-data
+      author: korsnaike
+      changes:
+        - insert:
+            tableName: student
+            columns:
+              - column:
+                  name: first_name
+                  value: John
+              - column:
+                  name: last_name
+                  value: Doe
+              - column:
+                  name: middle_name
+                  value: M
+              - column:
+                  name: email
+                  value: john.doe1@example.com
+              - column:
+                  name: telegram
+                  value: "@johndoe1"
+              - column:
+                  name: phone
+                  value: "+12345678901"
+              - column:
+                  name: git
+                  value: https://github.com/johndoe1
+
+        - insert:
+            tableName: student
+            columns:
+              - column:
+                  name: first_name
+                  value: Jane
+              - column:
+                  name: last_name
+                  value: Smith
+              - column:
+                  name: middle_name
+                  value: A
+              - column:
+                  name: email
+                  value: jane.smith2@example.com
+              - column:
+                  name: telegram
+                  value: "@janesmith2"
+              - column:
+                  name: phone
+                  value: "+12345678902"
+              - column:
+                  name: git
+                  value: https://github.com/janesmith2
+
+        - insert:
+            tableName: student
+            columns:
+              - column:
+                  name: first_name
+                  value: Alice
+              - column:
+                  name: last_name
+                  value: Johnson
+              - column:
+                  name: middle_name
+                  value: B
+              - column:
+                  name: email
+                  value: alice.johnson3@example.com
+              - column:
+                  name: telegram
+                  value: "@alicejohnson3"
+              - column:
+                  name: phone
+                  value: "+12345678903"
+              - column:
+                  name: git
+                  value: https://github.com/alicejohnson3
+
+        - insert:
+            tableName: student
+            columns:
+              - column:
+                  name: first_name
+                  value: Bob
+              - column:
+                  name: last_name
+                  value: Brown
+              - column:
+                  name: middle_name
+                  value: C
+              - column:
+                  name: email
+                  value: bob.brown4@example.com
+              - column:
+                  name: telegram
+                  value: "@bobbrown4"
+              - column:
+                  name: phone
+                  value: "+12345678904"
+              - column:
+                  name: git
+                  value: https://github.com/bobbrown4
