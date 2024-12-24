@@ -1,6 +1,8 @@
 package com.korsnaike.patternsspringstudent.controller
 
+import com.korsnaike.patternsspringstudent.dto.CreateStudentDto
 import com.korsnaike.patternsspringstudent.dto.GetAllStudentsQueryParamsDto
+import com.korsnaike.patternsspringstudent.dto.UpdateStudentDto
 import com.korsnaike.patternsspringstudent.entity.Student
 import com.korsnaike.patternsspringstudent.service.StudentService
 import jakarta.validation.ConstraintViolationException
@@ -27,21 +29,11 @@ class StudentController(@Autowired private val studentService: StudentService) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun createStudent(@RequestBody @Valid student: Student): Student = studentService.save(student)
+    fun createStudent(@RequestBody @Valid dto: CreateStudentDto): Student = studentService.save(dto)
 
     @PutMapping("/{id}")
-    fun updateStudent(@PathVariable id: Long, @RequestBody student: Student): Student {
-        try {
-            return studentService.update(student.copy(id = id))
-        } catch (ex: TransactionException) {
-            if (ex.rootCause != null && ex.rootCause is ValidationException) {
-                throw ResponseStatusException(HttpStatus.BAD_REQUEST, (ex.rootCause as ValidationException).localizedMessage)
-            }
-            throw ex
-        } catch (ex: ValidationException) {
-            throw ResponseStatusException(HttpStatus.BAD_REQUEST, ex.localizedMessage)
-        }
-    }
+    fun updateStudent(@PathVariable id: Long, @RequestBody @Valid dto: UpdateStudentDto): Student =
+        studentService.update(id, dto)
 
 
     @DeleteMapping("/{id}")

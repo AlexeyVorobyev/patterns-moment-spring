@@ -1,9 +1,10 @@
 package com.korsnaike.patternsspringstudent.service
 
+import com.korsnaike.patternsspringstudent.dto.CreateStudentDto
 import com.korsnaike.patternsspringstudent.dto.GetAllStudentsQueryParamsDto
+import com.korsnaike.patternsspringstudent.dto.UpdateStudentDto
 import com.korsnaike.patternsspringstudent.entity.Student
 import com.korsnaike.patternsspringstudent.repository.StudentRepository
-import jakarta.validation.Valid
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
@@ -17,14 +18,12 @@ class StudentService(@Autowired private val studentRepository: StudentRepository
 
     fun findById(id: Long): Optional<Student> = studentRepository.findById(id)
 
-    fun save(student: Student): Student = studentRepository.save(student)
+    fun save(dto: CreateStudentDto): Student = studentRepository.save(dto.toEntity())
 
-    fun update(@Valid student: Student): Student {
-        if (!studentRepository.existsById(student.id)) {
-            val id = student.id
-            throw NoSuchElementException("Student with id $id not found")
-        }
-        return studentRepository.save(student)
+    fun update(id: Long, dto: UpdateStudentDto): Student {
+        val student = studentRepository.findById(id).orElseThrow { NoSuchElementException("Student not found") }
+
+        return studentRepository.save(student.updateFromDto(dto))
     }
 
     fun deleteById(id: Long) {
